@@ -2,6 +2,9 @@
 
 Docker container with **ProM 6.15**, accessible through your web browser via noVNC.
 
+<img width="479" height="288.75" alt="image" src="https://github.com/user-attachments/assets/aee4f93f-9690-43d5-a94a-b40da44fc21d" />
+
+
 ## Prerequisites
 
 - **Docker Desktop** installed and running
@@ -49,7 +52,7 @@ docker run -d --name prom615 -p 6080:6080 --platform linux/amd64 --restart unles
 
 ### 3. Open the desktop
 
-Open your web browser and go to:
+Open your web browser and go to [http://localhost:6080/vnc.html](http://localhost:6080/vnc.html):
 
 ```
 http://localhost:6080/vnc.html
