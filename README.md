@@ -1,6 +1,6 @@
 # ProM 6.15 - Docker Container
 
-Docker container with **ProM 6.15**, accessible through your web browser via noVNC.
+Docker container with **[ProM 6.15](https://promtools.org/prom-6-15/)**, accessible through your web browser via noVNC.
 
 <img width="479" height="288.75" alt="image" src="https://github.com/user-attachments/assets/aee4f93f-9690-43d5-a94a-b40da44fc21d" />
 
