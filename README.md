@@ -22,7 +22,7 @@ docker --version
 **Option A — Pull from registry (recommended):**
 
 ```
-docker pull ghcr.io/OWNER/prom615:latest
+docker pull ghcr.io/aarkue/prom615:latest
 ```
 
 **Option B — Load from file:**
@@ -39,7 +39,7 @@ Run this from the folder where you want your files to be stored (a `shared` subf
 
 If you used **Option A** (registry):
 ```
-docker run -d --name prom615 -p 6080:6080 --platform linux/amd64 --restart unless-stopped -v ./shared:/home/user/shared ghcr.io/OWNER/prom615:latest
+docker run -d --name prom615 -p 6080:6080 --platform linux/amd64 --restart unless-stopped -v ./shared:/home/user/shared ghcr.io/aarkue/prom615:latest
 ```
 
 If you used **Option B** (file):
@@ -160,8 +160,8 @@ Optionally compress (saves significant space):
 
 **Container registry (GHCR):**
 ```
-docker tag prom615:latest ghcr.io/OWNER/prom615:latest
-docker push ghcr.io/OWNER/prom615:latest
+docker tag prom615:latest ghcr.io/aarkue/prom615:latest
+docker push ghcr.io/aarkue/prom615:latest
 ```
 
 **GitHub Release:** Upload the `prom615.tar.gz` file as a release asset.
