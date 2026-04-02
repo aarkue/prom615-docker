@@ -1,0 +1,10 @@
+services:
+  prom615:
+    build: .
+    image: prom615:latest
+    platform: linux/amd64
+    ports:
+      - "6080:6080"
+    restart: unless-stopped
+    volumes:
+      - ./shared:/home/user/shared

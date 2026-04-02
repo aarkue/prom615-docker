@@ -1,0 +1,38 @@
+This project packages ProM 6.15 into a Docker container for convenient use.
+It does not modify the ProM source code.
+
+================================================================================
+ProM 6 Framework License
+================================================================================
+
+Copyright (c) 2018 TU/e
+
+The ProM framework is distributed under the GNU General Public License (GPL),
+Version 2 or any later version.
+
+The GPL allows you to:
+
+  - Use this ProM software at no charge.
+  - Distribute verbatim copies of the software in source or binary form.
+  - Sell verbatim copies of the software for a media fee, or sell support
+    for the software.
+
+The GPL does not allow you to make changes or add features to the ProM software
+and then sell a binary distribution without source code. You must provide source
+for any changes or additions to the software, and all code must be provided
+under the GPL.
+
+ProM 6 plug-ins are distributed as separate packages, typically under the
+GNU Lesser General Public License (LGPL). Third-party dependencies within
+individual plug-ins may use different licenses.
+
+For the full GPL v2 license text, see:
+https://www.gnu.org/licenses/old-licenses/gpl-2.0.html
+
+================================================================================
+Dockerfile and supporting scripts
+================================================================================
+
+The Dockerfile, start.sh, and other container configuration files in this
+repository are licensed under the GNU General Public License (GPL), Version 2
+or any later version, consistent with the ProM framework they package.

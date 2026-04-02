@@ -1,0 +1,4 @@
+shared/
+*.md
+docker-compose*.yaml
+.dockerignore
