@@ -5,9 +5,10 @@ ENV DEBIAN_FRONTEND=noninteractive
 # Install JRE, VNC, noVNC, window manager, terminal, and dependencies
 RUN apt-get update && apt-get install -y --no-install-recommends \
     # Java for ProM
-    openjdk-11-jre \
-    # VNC and desktop
-    tigervnc-standalone-server \
+    openjdk-8-jre \
+    # Virtual framebuffer + VNC (Xvfb provides GLX/software OpenGL, x11vnc exposes it)
+    xvfb \
+    x11vnc \
     novnc \
     websockify \
     fluxbox \
@@ -15,20 +16,22 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     xterm \
     autocutsel \
     xclip \
-    # X11 libs for ProM (64-bit)
+    # X11 and OpenGL libs for ProM
     libxext6 \
     libxrender1 \
     libxtst6 \
     libxi6 \
     libfreetype6 \
     fontconfig \
+    libgl1-mesa-dri \
     graphviz \
     && rm -rf /var/lib/apt/lists/*
 
 # Set JAVA_HOME (the symlink resolves the architecture-specific directory name)
-RUN ln -s /usr/lib/jvm/java-11-openjdk-* /usr/lib/jvm/java-11-openjdk
-ENV JAVA_HOME=/usr/lib/jvm/java-11-openjdk
+RUN ln -s /usr/lib/jvm/java-8-openjdk-* /usr/lib/jvm/java-8-openjdk
+ENV JAVA_HOME=/usr/lib/jvm/java-8-openjdk
 ENV DISPLAY=:1
+ENV LIBGL_ALWAYS_SOFTWARE=1
 
 # Create a non-root user
 RUN useradd -ms /bin/bash user
@@ -43,7 +46,10 @@ RUN mkdir -p /home/user/ProM \
 
 
 # Set up Fluxbox menu (right-click desktop to access)
-RUN mkdir -p /home/user/.fluxbox && printf '%s\n' \
+RUN mkdir -p /home/user/.fluxbox && \
+    printf 'session.screen0.toolbar.visible: false\n' > /home/user/.fluxbox/init && \
+    ln -s /bin/true /usr/local/bin/fbsetbg && \
+    printf '%s\n' \
     '[begin] (Applications)' \
     '  [exec] (ProM 6.15) {bash -c "cd /home/user/ProM && ./ProM615.sh"}' \
     '  [separator]' \

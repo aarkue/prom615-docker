@@ -163,11 +163,15 @@ Optionally compress (saves significant space):
 
 **Container registry (GHCR):**
 ```
+docker tag prom615:latest ghcr.io/aarkue/prom615:X.Y.Z
 docker tag prom615:latest ghcr.io/aarkue/prom615:latest
+docker push ghcr.io/aarkue/prom615:X.Y.Z
 docker push ghcr.io/aarkue/prom615:latest
 ```
 
-**GitHub Release:** Upload the `prom615.tar.gz` file as a release asset.
+Replace `X.Y.Z` with the version number matching the GitHub Release (e.g., `0.2.0`).
+
+**GitHub Release:** Create a release with the same version tag and upload the `prom615.tar.gz` file as a release asset.
 
 ### What to distribute to students
 
