@@ -2,10 +2,19 @@ FROM ubuntu:22.04
 
 ENV DEBIAN_FRONTEND=noninteractive
 
-# Install JRE, VNC, noVNC, window manager, terminal, and dependencies
+# Use fast German mirror
+RUN sed -i 's|http://archive.ubuntu.com/ubuntu|http://ftp.fau.de/ubuntu|g' /etc/apt/sources.list && \
+    sed -i 's|http://security.ubuntu.com/ubuntu|http://ftp.fau.de/ubuntu|g' /etc/apt/sources.list
+
+# Install BellSoft Liberica JDK 8 Full (includes JavaFX 8 - OpenJDK 8 lacks it)
+RUN apt-get update && apt-get install -y --no-install-recommends ca-certificates curl && \
+    curl -fsSL -o /tmp/liberica.deb "https://download.bell-sw.com/java/8u432+7/bellsoft-jre8u432+7-linux-amd64-full.deb" && \
+    apt-get install -y --no-install-recommends /tmp/liberica.deb && \
+    rm /tmp/liberica.deb && \
+    rm -rf /var/lib/apt/lists/*
+
+# Install VNC, noVNC, window manager, terminal, and dependencies
 RUN apt-get update && apt-get install -y --no-install-recommends \
-    # Java for ProM
-    openjdk-8-jre \
     # Virtual framebuffer + VNC (Xvfb provides GLX/software OpenGL, x11vnc exposes it)
     xvfb \
     x11vnc \
@@ -27,9 +36,10 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     graphviz \
     && rm -rf /var/lib/apt/lists/*
 
-# Set JAVA_HOME (the symlink resolves the architecture-specific directory name)
-RUN ln -s /usr/lib/jvm/java-8-openjdk-* /usr/lib/jvm/java-8-openjdk
-ENV JAVA_HOME=/usr/lib/jvm/java-8-openjdk
+# Set JAVA_HOME to Liberica 8 Full (find the installed path)
+RUN ln -s /usr/lib/jvm/bellsoft-java8* /usr/lib/jvm/java-8 || \
+    ln -s $(dirname $(dirname $(readlink -f $(which java)))) /usr/lib/jvm/java-8
+ENV JAVA_HOME=/usr/lib/jvm/java-8
 ENV DISPLAY=:1
 ENV LIBGL_ALWAYS_SOFTWARE=1
 
