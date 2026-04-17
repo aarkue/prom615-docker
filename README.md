@@ -50,6 +50,8 @@ If you used **Option B** (file):
 docker run -d --name prom615 -p 6080:6080 --platform linux/amd64 --restart unless-stopped -v ./shared:/home/user/shared prom615:latest
 ```
 
+_Note for Windows Users_: If the shared folder does not link correctly, change the path syntax in the command to use a backslash: `.\shared:/home/user/shared`.
+
 ### 3. Open the desktop
 
 Open your web browser and go to [http://localhost:6080/vnc.html](http://localhost:6080/vnc.html):
@@ -58,7 +60,7 @@ Open your web browser and go to [http://localhost:6080/vnc.html](http://localhos
 http://localhost:6080/vnc.html
 ```
 
-Click **Connect**. ProM 6.15 will start automatically. If you need to relaunch it or open a terminal, **right-click** on the desktop for a menu.
+Click **Connect**. ProM 6.15 will start automatically but it might take a moment to launch. If you need to relaunch it or open a terminal, **right-click** on the desktop for a menu.
 
 ### 4. Stop and restart
 
